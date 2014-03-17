@@ -16,7 +16,6 @@ void clearArray(int array[], int size);
 void printArray(int array[], int size);
 void diffArray(int map[], int msize, int target[], int tsize);
 bool getTarget(int target[], int& tsize);
-void pause();
 
 int main() {
 	int map[18] = {
@@ -31,9 +30,12 @@ int main() {
 		printArray(map, 18);
 		cout << "\nTHE TARGET:";
 		printArray(target, tsize);
-		pause();
+		cout << "Press ENTER to CONTINUE";
+		cin.get();
+		cin.get();
 		diffArray(map, 18, target, tsize);
-		pause();
+		cout << "Press ENTER to CONTINUE";
+		cin.get();
 	}
 	return 0;
 }
@@ -89,10 +91,4 @@ bool getTarget(int target[], int& tsize) {
 	for (int i=0; i<tsize; i++)
 		cin >> target[i];
 	return true;
-}
-
-void pause() {
-	cout << "Press Enter to CONTINUE: ";
-	cin.get();
-	cin.get();
 }
