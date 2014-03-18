@@ -12,7 +12,6 @@ const int MAX_HEIGHT = 5;
 const int MIN_HEIGHT = 0;
 
 //FUNCTIONS
-void clearArray(int array[], int size);
 void printArray(int array[], int size);
 void diffArray(int map[], int msize, int target[], int tsize);
 bool getTarget(int target[], int& tsize);
@@ -23,8 +22,7 @@ int main() {
 	};
 	int target[] = {0}, tsize = 0;
 	while (true) {
-		clearArray(target, tsize);
-		if (!getTarget(target, tsize))
+		if (!getTarget(target, tsize))		 // If user entered 0 for size
 			break;
 		cout << "\nTHE MAP:";
 		printArray(map, 18);
@@ -38,14 +36,6 @@ int main() {
 		cin.get();
 	}
 	return 0;
-}
-
-void clearArray(int array[], int size) {
-	if (size == 0)
-		array[0] = 0;
-	else
-		for (int i=0; i<size; i++)
-			array[i] = 0;
 }
 
 void printArray(int array[], int size) {
