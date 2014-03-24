@@ -110,7 +110,7 @@ int searchId(struct roster data)
         if (data.records[i].id == id)
             return i;
     }
-    cout << "Couldn't find id in Data";
+    cout << "Couldn't find ID: "<< id;
     return -1;
 }
 
@@ -124,7 +124,7 @@ int searchLName(struct roster data)
         if(strcmp(data.records[i].lname, lname) == 0)
             return i;
     }
-    cout << "Couldn't find id in Data";
+    cout << "Couldn't find Last Name: "<< lname;
     return -1;
 }
 
