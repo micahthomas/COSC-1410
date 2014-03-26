@@ -157,12 +157,22 @@ bool menu(struct ROSTER data)
     case 2:
         id = searchId(data);
         if (id != -1)
+        {
             printStudent(data.records[id]);
+            cout << "\n\nPress ENTER to continue...";
+            cin.get();
+            cin.get();
+        }
         break;
     case 3:
         id = searchLName(data);
         if (id != -1)
+        {
             printStudent(data.records[id]);
+            cout << "\n\nPress ENTER to continue...";
+            cin.get();
+            cin.get();
+        }
         break;
     case 4:
         return false;
