@@ -29,19 +29,22 @@ int main()
          << "##        ##   ##  ##    ## ##     ## ##     ## ##   ### ##    ##  ##      " << endl
          << "######## ##     ##  ######  ##     ## ##     ## ##    ##  ######   ########" << endl
          << "===========================================================================" << endl;
-    double exchrate=13.3;
+    double exchrate = 13.3;
     int menu, loop;
-    do {
+    do
+    {
         menu = printMenu(exchrate);
         cout << "\n====================================================";
         loop = logic(menu, exchrate);       // RETURNS 0 if user wants to exit; 0 to continue;
         cout << "\n====================================================\n";
-        if (loop) {                         // IF user wants to exit, dont pause
-             cout << "\nPress ENTER to continue";
+        if (loop)                           // IF user wants to exit, dont pause
+        {
+            cout << "\nPress ENTER to continue";
             cin.get();
             cin.get();
         }
-    } while (loop);
+    }
+    while (loop);
     return 0;
 }
 
@@ -55,9 +58,9 @@ int printMenu(double &rate)
          << "\n|                   | Buying Pesos | Selling Pesos |"
          << "\n+-------------------+--------------+---------------+"
          << "\n| $1 =              | " << setw(8) << getBuyRate(rate)
-                                         << " MXN | " <<
-                                         setw(9) << getSellRate(rate)
-                                                         << " MXN |"
+         << " MXN | " <<
+         setw(9) << getSellRate(rate)
+         << " MXN |"
          << "\n+-------------------+--------------+---------------+"
          << "\n| Select the option:                               |"
          << "\n| 1. Pesos to Dollars                              |"
@@ -83,9 +86,11 @@ int cont()
     return 1;
 }
 
-int logic(int test, double &rate){
-    switch (test) {
-    double amount;
+int logic(int test, double &rate)
+{
+    switch (test)
+    {
+        double amount;
     case 1:
         cout << "\nHow many Pesos would you like to Exchange? ";
         cin >> amount;
@@ -111,12 +116,12 @@ int logic(int test, double &rate){
 
 double getBuyRate(double rate)
 {
-    return rate*.93;
+    return rate * .93;
 }
 
 double getSellRate(double rate)
 {
-    return rate*1.07;
+    return rate * 1.07;
 }
 
 void setRate(double &rate)
@@ -136,10 +141,10 @@ void exchange(ExchType exch, double amount, double rate)
 {
     if (exch == BUY)
     {
-        cout << "\nYou will get " << amount*getBuyRate(rate) << " Pesos.";
+        cout << "\nYou will get " << amount *getBuyRate(rate) << " Pesos.";
     }
     else
     {
-        cout << "\nYou will get " << amount/getSellRate(rate) << " USD.";
+        cout << "\nYou will get " << amount / getSellRate(rate) << " USD.";
     }
 }

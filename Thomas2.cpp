@@ -8,17 +8,18 @@ using namespace std;
 
 int main()
 {
-    char ans,ch;
+    char ans, ch;
     int ans_axle;
     float toll;
 
-    do {
+    do
+    {
         cout << "\n------------------------------------\n";
         cout << "          TOLL CALCULATION          \n";
         cout << "------------------------------------\n\n";
         cout << "Does the vehicle have an EZ-TAG?(Y/N): ";
         cin  >> ans;
-        if(ans == 'Y' || ans == 'y')
+        if (ans == 'Y' || ans == 'y')
         {
             ans = 'y';
             cout << "\n>> Vehicle has EZ-TAG!\n\n";
@@ -29,8 +30,9 @@ int main()
         }
         cout << "How many axles does the vehicle have?: ";
         cin  >> ans_axle;
-        cout << "\n>> The vehicle has "<<ans_axle<<" axle(s)\n\n";
-        switch (ans_axle) {
+        cout << "\n>> The vehicle has " << ans_axle << " axle(s)\n\n";
+        switch (ans_axle)
+        {
         case 1:
         case 2:
             if (ans == 'y')
@@ -65,6 +67,7 @@ int main()
         cout << ">> Toll Charge: " << setprecision(3) << toll << setprecision(0);
         cout << "\n\nDo you wish to try again?(Y/N): ";
         cin >> ch;
-    } while (!(ch=='n' || ch =='N'));
+    }
+    while (!(ch == 'n' || ch == 'N'));
 }
 

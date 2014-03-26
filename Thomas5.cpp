@@ -24,7 +24,7 @@ int main()
     getStats(mean, std, size, lower, upper);
     cout << fixed << setprecision(5);
     cout << "\nMean: " << mean << " Std-deviation: " << std << endl;
-    while(repeat())
+    while (repeat())
     {
         getZ(mean, std);
     }
@@ -44,24 +44,24 @@ void getInput(int &seed, int &size, int &lower, int &upper)
 
 void getStats(double &mean, double &std, int size, int lower, int upper)
 {
-    double sum=0, square_sum=0;
+    double sum = 0, square_sum = 0;
     int current;
     cout << "\nNumbers Generated:\n";
-    for (int i; i<size; i++)
+    for (int i; i < size; i++)
     {
         current = getNum(lower, upper);
         cout << current << " ";
         sum += current;
         square_sum += pow(current, 2);
     }
-    mean = sum/size;
-    std = (square_sum - 2 * mean * sum + pow(mean, 2) * size)/size;
+    mean = sum / size;
+    std = (square_sum - 2 * mean * sum + pow(mean, 2) * size) / size;
     std = sqrt(std);
 }
 
 int getNum(int lower, int upper)
 {
-    return (rand()%upper+lower);
+    return (rand() % upper + lower);
 }
 
 void getZ(double mean, double std)
@@ -69,7 +69,7 @@ void getZ(double mean, double std)
     double x, z;
     cout << "Enter the value to calculate the z-score: ";
     cin >> x;
-    z = (x-mean)/std;
+    z = (x - mean) / std;
     cout << "Z-Score: for " << x << " is: " << z;
 }
 

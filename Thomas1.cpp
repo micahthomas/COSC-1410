@@ -6,29 +6,29 @@ using namespace std;
 int main()
 {
     const float
-            a_rent=1200.00,
-            c_cable=55.99,
-            c_internet=45.00,
-            c_phone=39.50,
-            a_room=1,
-            b_room=.5,
-            c_room=.5,
-            tenants=3;
+    a_rent = 1200.00,
+    c_cable = 55.99,
+    c_internet = 45.00,
+    c_phone = 39.50,
+    a_room = 1,
+    b_room = .5,
+    c_room = .5,
+    tenants = 3;
     float
-            b_gas_bill,
-            b_elec_bill,
-            a_total,
-            b_total,
-            c_total,
-            a_coll,
-            b_pay,
-            c_pay,
-            total_util;
+    b_gas_bill,
+    b_elec_bill,
+    a_total,
+    b_total,
+    c_total,
+    a_coll,
+    b_pay,
+    c_pay,
+    total_util;
 
     // get intial values
-    cout << left << setw(35) << "Bob: Gas Bill:"<<"$ ";
+    cout << left << setw(35) << "Bob: Gas Bill:" << "$ ";
     cin >> b_gas_bill;
-    cout << setw(35) << "Bob: Electricity Bill:"<<"$ ";
+    cout << setw(35) << "Bob: Electricity Bill:" << "$ ";
     cin >> b_elec_bill;
 
     // num of tenants
@@ -58,11 +58,11 @@ int main()
     total_util = b_gas_bill + b_elec_bill + c_cable + c_phone + c_internet;
 
     cout << left  << setw(35) << "Total Utilities:" << "$"
-         << right <<setw(8)   << total_util << endl << endl;
+         << right << setw(8)   << total_util << endl << endl;
 
-    a_total = ((a_rent/(a_room + b_room + c_room))*a_room) + (total_util/3);
-    b_total = ((a_rent/(a_room + b_room + c_room))*b_room) + (total_util/3);
-    c_total = ((a_rent/(a_room + b_room + c_room))*c_room) + (total_util/3);
+    a_total = ((a_rent / (a_room + b_room + c_room)) * a_room) + (total_util / 3);
+    b_total = ((a_rent / (a_room + b_room + c_room)) * b_room) + (total_util / 3);
+    c_total = ((a_rent / (a_room + b_room + c_room)) * c_room) + (total_util / 3);
 
     cout << left  << setw(35) << "Total for Adam:" << "$"
          << right << setw(8)  << a_total << endl;

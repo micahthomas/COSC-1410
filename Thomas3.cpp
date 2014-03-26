@@ -11,7 +11,8 @@ int main()
     char ch;
     double principal, rate, time, current_balance, interest, i;
     int j;
-    do {
+    do
+    {
         cout << "\nInitial Deposit: $";
         cin  >> principal;
 
@@ -24,7 +25,7 @@ int main()
         cout << "\n\n\nBalances at the end of each year:\n\n\n";
 
         cout << fixed << setprecision(2);
-        for (i=(rate-.1); i < (rate+.2); i+=.1 )
+        for (i = (rate - .1); i < (rate + .2); i += .1 )
         {
             cout << "\nRate => " << i << "%";
             cout << "\n   +-------+----------------------+-----------+----------------------+";
@@ -33,11 +34,11 @@ int main()
             cout << "\n   +-------+----------------------+-----------+----------------------+";
             cout << "\n   |       |                      |           |                      |";
             current_balance = principal;
-            for (j=1; j <= (time+1); j++)
+            for (j = 1; j <= (time + 1); j++)
             {
-                interest = current_balance * (rate/100);
-                cout << "\n   | "<< right << setw(5) << j << " | "<< setw(20) <<
-                        left << current_balance << " | " << setw(9) << right << interest;
+                interest = current_balance * (rate / 100);
+                cout << "\n   | " << right << setw(5) << j << " | " << setw(20) <<
+                     left << current_balance << " | " << setw(9) << right << interest;
                 current_balance = current_balance + interest;
                 cout << " | " << setw(20) << left << current_balance << " |";
 
@@ -48,5 +49,6 @@ int main()
 
         cout << "Would you like to continue? (Y/N):";
         cin >> ch;
-    } while (tolower(ch) != 'n');
+    }
+    while (tolower(ch) != 'n');
 }
