@@ -36,14 +36,9 @@ bool menu(struct ROSTER data);
 
 int main()
 {
-    bool loop;
     ROSTER compsci;
     loadData(compsci);
-    do
-    {
-        loop = menu(compsci);
-    }
-    while (loop);
+    while (menu(compsci));
 }
 
 bool getRecord(int &recNum, int &id, char fname[], char lname[], char email[], double &gpa)
@@ -157,22 +152,18 @@ bool menu(struct ROSTER data)
     case 2:
         id = searchId(data);
         if (id != -1)
-        {
             printStudent(data.records[id]);
-            cout << "\n\nPress ENTER to continue...";
-            cin.get();
-            cin.get();
-        }
+        cout << "\n\nPress ENTER to continue...";
+        cin.get();
+        cin.get();
         break;
     case 3:
         id = searchLName(data);
         if (id != -1)
-        {
             printStudent(data.records[id]);
-            cout << "\n\nPress ENTER to continue...";
-            cin.get();
-            cin.get();
-        }
+        cout << "\n\nPress ENTER to continue...";
+        cin.get();
+        cin.get();
         break;
     case 4:
         return false;
