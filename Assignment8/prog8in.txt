@@ -1,0 +1,6 @@
+9990001 Stephen Huang  shuang@cs.uh.edu 2.33
+9990002 Jaspal Subhlok jaspal@cs.uh.edu 3.00
+1110003 Barbara Chapman chapman@cs.uh.edu 3.50
+2220004 Olin Johnson johnson@cs.uh.edu 2.99
+9990003 Albert Cheng acheng@cs.uh.edu 3.67
+9990004 Lennart Johnsson johnsson@cs.uh.edu 3.00
