@@ -33,8 +33,6 @@ Document::Document()
 {
     numUnique = 0;
     numWords = 0;
-    // words[0].word = "hello";
-    // words[0].count = 1;
 }
 
 int Document::getWord(string w)
