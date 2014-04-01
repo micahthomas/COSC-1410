@@ -2,7 +2,6 @@
 #include <cstring>
 #include <iostream>
 #include <iomanip>
-#include <cctype>
 
 using namespace std;
 
@@ -20,7 +19,7 @@ public:
     void getInput();
 
 private:
-    Word words[];
+    Word words[200];
     int numWords;
     int numUnique;
     string removePunct(string w);
@@ -34,6 +33,8 @@ Document::Document()
 {
     numUnique = 0;
     numWords = 0;
+    // words[0].word = "hello";
+    // words[0].count = 1;
 }
 
 int Document::getWord(string w)
@@ -42,7 +43,6 @@ int Document::getWord(string w)
     {
         if (words[i].word == w)
         {
-            cout << i;
             return i;
         }
     }
@@ -52,17 +52,17 @@ int Document::getWord(string w)
 void Document::addWord(string w)
 {
     int idx = getWord(w);
-    if (idx != -1)
+    if (idx == -1)
     {
         words[numUnique].word = w;
         words[numUnique].count = 1;
         numWords++;
+        numUnique++;
     }
     else
     {
         words[idx].count++;
         numWords++;
-        numUnique++;
     }
 }
 
@@ -95,6 +95,7 @@ string Document::removePunct(string w)
 
 void Document::getInput()
 {
+    cout << "Please enter some sentences below. A word '###' terminate the input.\n";
     string text;
     while (true)
     {
@@ -107,12 +108,37 @@ void Document::getInput()
     }
 }
 
+void Document::sortWords()
+{
+    int i, k, indexOfNextBiggest, temp_count;
+    string temp_word;
+    for (i = 0; i < numUnique - 1; i++)
+    {
+        indexOfNextBiggest = i;
+        for (k = i + 1; k < numUnique; k++)
+            if (words[k].count > words[indexOfNextBiggest].count)
+                indexOfNextBiggest = k;
+        temp_count = words[i].count;
+        temp_word = words[i].word;
+        words[i].count = words[indexOfNextBiggest].count;
+        words[i].word = words[indexOfNextBiggest].word;
+        words[indexOfNextBiggest].count = temp_count;
+        words[indexOfNextBiggest].word = temp_word;
+    }
+}
+
 void Document::printStats()
 {
+    sortWords();
+    cout << "+--------------------------------+------------+"
+         << "\n| " << left << setw(30) << "Total Number of Words " << " | "
+         << right << setw(10) << numWords << " |"
+         << "\n| " << left << setw(30) << "Total Unique Words " << " | "
+         << right << setw(10) << numUnique << " |"
+         << "\n+--------------------------------+------------+";
     for (int i = 0; i < numUnique; i++)
     {
-        cout << "Word: " << words[numUnique].word
-             << "Count: " << words[numUnique].count
-             << endl;
+        cout << "\n| " << left << setw(30) << words[i].word << " | " << right << setw(10) << words[i].count << " |";
     }
+    cout << "\n+--------------------------------+------------+";
 }
