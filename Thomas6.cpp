@@ -16,79 +16,69 @@ void printArray(int array[], int size);
 void diffArray(int map[], int msize, int target[], int tsize);
 bool getTarget(int target[], int &tsize);
 
-int main()
-{
-    int map[18] =
-    {
-        2, 1, 3, 1, 1, 2, 3, 5, 3, 2, 1, 0, 2, 1, 2, 4, 1, 2
-    };
-    int target[] = {0}, tsize = 0;
-    while (true)
-    {
-        if (!getTarget(target, tsize))       // If user entered 0 for size
-            break;
-        cout << "\nTHE MAP:";
-        printArray(map, 18);
-        cout << "\nTHE TARGET:";
-        printArray(target, tsize);
-        cout << "Press ENTER to CONTINUE";
-        cin.get();
-        cin.get();
-        diffArray(map, 18, target, tsize);
-        cout << "Press ENTER to CONTINUE";
-        cin.get();
-    }
-    return 0;
+int main() {
+  int map[18] = {
+    2, 1, 3, 1, 1, 2, 3, 5, 3, 2, 1, 0, 2, 1, 2, 4, 1, 2
+  };
+  int target[] = {0}, tsize = 0;
+  while (true) {
+    if (!getTarget(target, tsize))       // If user entered 0 for size
+      break;
+    cout << "\nTHE MAP:";
+    printArray(map, 18);
+    cout << "\nTHE TARGET:";
+    printArray(target, tsize);
+    cout << "Press ENTER to CONTINUE";
+    cin.get();
+    cin.get();
+    diffArray(map, 18, target, tsize);
+    cout << "Press ENTER to CONTINUE";
+    cin.get();
+  }
+  return 0;
 }
 
-void printArray(int array[], int size)
-{
-    cout << "\n\n";
-    for (int j = MAX_HEIGHT; j > MIN_HEIGHT; j--)
-    {
-        for (int i = 0; i < size; i++)
-        {
-            if (array[i] >= j)
-                cout << " = ";
-            else
-                cout << "   ";
-        }
-        cout << endl;
+void printArray(int array[], int size) {
+  cout << "\n\n";
+  for (int j = MAX_HEIGHT; j > MIN_HEIGHT; j--) {
+    for (int i = 0; i < size; i++) {
+      if (array[i] >= j)
+        cout << " = ";
+      else
+        cout << "   ";
     }
-    for (int i = 0; i < size; i++)
-        cout << "---";
-    cout << "\n\n";
+    cout << endl;
+  }
+  for (int i = 0; i < size; i++)
+    cout << "---";
+  cout << "\n\n";
 }
 
-void diffArray(int map[], int msize, int target[], int tsize)
-{
-    int targets = (msize - tsize), i, diff, min = MAX_HEIGHT * tsize, cord;
-    for (i = 0; i <= targets; i++)
-    {
-        cout << "\nDiff\t(" << i << ", " << i + (tsize - 1) << ")";
-        diff = 0;
-        for (int j = 0; j < tsize; j++)
-            diff += abs(map[j + i] - target[j]);
-        if (diff < min)
-        {
-            min = diff;
-            cord = i;
-        }
-        cout << " = " << diff;
+void diffArray(int map[], int msize, int target[], int tsize) {
+  int targets = (msize - tsize), i, diff, min = MAX_HEIGHT * tsize, cord;
+  for (i = 0; i <= targets; i++) {
+    cout << "\nDiff\t(" << i << ", " << i + (tsize - 1) << ")";
+    diff = 0;
+    for (int j = 0; j < tsize; j++)
+      diff += abs(map[j + i] - target[j]);
+    if (diff < min) {
+      min = diff;
+      cord = i;
     }
-    cout << "\n\nThe Closest Cords to Target is (" << cord << ", "
-         << cord + (tsize - 1) << ") with difference of " << min << "\n\n";
+    cout << " = " << diff;
+  }
+  cout << "\n\nThe Closest Cords to Target is (" << cord << ", "
+       << cord + (tsize - 1) << ") with difference of " << min << "\n\n";
 }
 
-bool getTarget(int target[], int &tsize)
-{
-    cout << "Enter the size of the target: ";
-    cin >> tsize;
-    if (tsize == 0)
-        return false;
-    cout << "Enter " << tsize << " integers between " << MAX_HEIGHT
-         << " and " << MIN_HEIGHT << ": ";
-    for (int i = 0; i < tsize; i++)
-        cin >> target[i];
-    return true;
+bool getTarget(int target[], int &tsize) {
+  cout << "Enter the size of the target: ";
+  cin >> tsize;
+  if (tsize == 0)
+    return false;
+  cout << "Enter " << tsize << " integers between " << MAX_HEIGHT
+       << " and " << MIN_HEIGHT << ": ";
+  for (int i = 0; i < tsize; i++)
+    cin >> target[i];
+  return true;
 }
