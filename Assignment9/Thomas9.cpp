@@ -25,11 +25,12 @@ private:
     Word words[200];
     int numWords;
     int numUnique;
-    void removePunct(string& w);
-    void toLowerCase(string& w);
-    int getWord(const string& w);
-    void addWord(string& w);
+    void removePunct(string &w);
+    void toLowerCase(string &w);
+    int getWord(const string &w);
+    void addWord(string &w);
     void sortWords();
+    void printLine(int i, int j);
 };
 
 Document::Document()
@@ -38,7 +39,7 @@ Document::Document()
     numWords = 0;
 }
 
-int Document::getWord(const string& w)
+int Document::getWord(const string &w)
 {
     for (int i = 0; i < numUnique; i++)
     {
@@ -50,7 +51,7 @@ int Document::getWord(const string& w)
     return -1;
 }
 
-void Document::addWord(string& w)
+void Document::addWord(string &w)
 {
     toLowerCase(w);
     removePunct(w);
@@ -69,7 +70,7 @@ void Document::addWord(string& w)
     }
 }
 
-void Document::toLowerCase(string& w)
+void Document::toLowerCase(string &w)
 {
     for (int i = 0, len = w.size(); i < len; i++)
         w[i] = tolower(w[i]);
@@ -99,19 +100,6 @@ void Document::removePunct(string &w)
     }
 }
 
-void Document::getInput()
-{
-    cout << "Please enter some sentences below. A word '###' terminate the input.\n";
-    string text;
-    while (true)
-    {
-        cin >> text;
-        if (text == "###")
-            break;
-        addWord(text);
-    }
-}
-
 void Document::sortWords()
 {
     int i, k, indexOfNextBiggest, temp_count;
@@ -131,21 +119,64 @@ void Document::sortWords()
     }
 }
 
+void Document::printLine(int i, int j)
+{
+    cout << "\n| " << left << setw(20) << words[i].word
+         << " | " << right << setw(5) << words[i].count << " | ";
+    if (j == 0)
+    {
+        cout << left << setw(19) << " "
+             << " | " << right << setw(5) << " " << " |";
+    }
+    else
+    {
+        cout << left << setw(19) << words[j].word
+             << " | " << right << setw(5) << words[j].count << " |";
+    }
+}
+
+void Document::getInput()
+{
+    cout << "Please enter some sentences below. "
+         << "A word '###' terminate the input.\n";
+    string text;
+    while (true)
+    {
+        cin >> text;
+        if (text == "###")
+            break;
+        addWord(text);
+    }
+}
+
 void Document::printStats()
 {
     sortWords();
-    cout << "+--------------------------------+------------+"
-         << "\n| " << left << setw(30) << "Total Number of Words " << " | "
-         << right << setw(10) << numWords << " |"
-         << "\n| " << left << setw(30) << "Total Unique Words " << " | "
-         << right << setw(10) << numUnique << " |"
-         << "\n+--------------------------------+------------+";
-    for (int i = 0; i < numUnique; i++)
+    cout << "+----------------------------------------------------+-------+"
+         << "\n| " << left << setw(50) << "Total Number of Words " << " | "
+         << right << setw(5) << numWords << " |"
+         << "\n| " << left << setw(50) << "Total Unique Words " << " | "
+         << right << setw(5) << numUnique << " |"
+         << "\n+----------------------+-------+---------------------+-------+";
+    if (numUnique == 0) return;     // Dont display anything more if no words
+    int half = numUnique / 2;
+    if (half == 0)                  // If only one word
     {
-        cout << "\n| " << left << setw(30) << words[i].word
-             << " | " << right << setw(10) << words[i].count << " |";
+        printLine(0, 0);
     }
-    cout << "\n+--------------------------------+------------+";
+    else                            // More than one word
+    {
+        for (int i = 0; i < half; i++)
+        {
+            printLine(i, i + half);
+        }
+        if ((half * 2) != numUnique)// If odd number of words
+        {
+            printLine(numUnique - 1, 0);
+        }
+
+    }
+    cout << "\n+----------------------+-------+---------------------+-------+";
 }
 
 int main()
