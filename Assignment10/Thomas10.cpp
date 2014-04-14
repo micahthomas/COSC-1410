@@ -43,6 +43,9 @@ class GradeBook {
 
 GradeBook::GradeBook() {
   numStudents = 0;
+  inFile = "prog10in.txt";
+  outFile = "prog10out.txt";
+  students[0].id = 0;
 }
 
 
@@ -110,10 +113,6 @@ void GradeBook::saveData() {
 void GradeBook::setFiles(char in[], char out[]) {
   strcpy(inFile, in);
   strcpy(outFile, out);
-}
-void GradeBook::setFiles() {
-  strcpy(inFile, "prog10in.txt");
-  strcpy(outFile, "prog10out.txt");
 }
 int GradeBook::findID(int id) {
   for (int i = 0; i < numStudents; i++) {
