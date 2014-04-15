@@ -34,7 +34,9 @@ class GradeBook {
     ofstream outStream;
     char inFile[40];
     char outFile[40];
-    void addStudent(int id, char lname[], char fname[], char email[], double gpa);
+    void addStudent(
+      int id, char lname[], char fname[], char email[], double gpa
+    );
     int deleteStudent(int id);
     int findID(int id);
     int numStudents;
@@ -66,7 +68,9 @@ void GradeBook::printId(int id) {
   }
 }
 
-void GradeBook::addStudent(int id, char lname[], char fname[], char email[], double gpa) {
+void GradeBook::addStudent(
+  int id, char lname[], char fname[], char email[], double gpa
+) {
   if (numStudents < 100) {
     students[numStudents].id = id;
     strcpy(students[numStudents].fname, fname);
