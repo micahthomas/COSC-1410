@@ -28,25 +28,24 @@ class GradeBook {
     void saveData();
     void menu();
     void setFiles(char in[], char out[]);
-    void setFiles();
   private:
     ifstream inStream;
     ofstream outStream;
     char inFile[40];
     char outFile[40];
+    int numStudents;
+    Student students[100];
     void addStudent(
       int id, char lname[], char fname[], char email[], double gpa
     );
     int deleteStudent(int id);
     int findID(int id);
-    int numStudents;
-    Student students[100];
 };
 
 GradeBook::GradeBook() {
   numStudents = 0;
-  inFile = "prog10in.txt";
-  outFile = "prog10out.txt";
+  strcpy(inFile, "prog10in.txt");
+  strcpy(outFile, "prog10out.txt");
   students[0].id = 0;
 }
 
@@ -107,8 +106,10 @@ void GradeBook::saveData() {
     cin.get();
   } else {
     for (int i = 0; i < numStudents; i++) {
-      outStream << students[i].id << " " << students[i].fname
-                << " " << students[i].lname << " " << students[i].email
+      outStream << students[i].id
+                << " " << students[i].fname
+                << " " << students[i].lname
+                << " " << students[i].email
                 << " " << students[i].gpa << "\n";
     }
     outStream.close();
@@ -216,8 +217,6 @@ int main(int argc, char *argv[]) {
   GradeBook class_roster;
   if (argc == 2)
     class_roster.setFiles(argv[0], argv[1]);
-  else
-    class_roster.setFiles();
   class_roster.loadData();
   class_roster.menu();
   return 0;
