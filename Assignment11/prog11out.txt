@@ -1,0 +1,6 @@
+1110003 Barbara Chapman 5000
+2220004 Olin Johnson 10000
+9990001 Stephen Huang 1000
+9990002 Jaspal Subhlok 2000
+9990003 Albert Cheng 20000
+9990004 Lennart Johnsson 40000

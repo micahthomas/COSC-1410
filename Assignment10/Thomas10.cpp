@@ -28,6 +28,7 @@ class GradeBook {
     void saveData();
     void menu();
     void setFiles(char in[], char out[]);
+    void sortData();
   private:
     ifstream inStream;
     ofstream outStream;
@@ -145,13 +146,39 @@ int GradeBook::deleteStudent(int id) {
   return -1;
 }
 
+void GradeBook::sortData() {
+  int i, k, indexOfNextSmallest;
+  Student temp;
+  for (i = 0; i < numStudents - 1; i++) {
+    indexOfNextSmallest = i;
+    for (k = i + 1; k < numStudents; k++)
+      if (students[k].id < students[indexOfNextSmallest].id)
+        indexOfNextSmallest = k;
+    temp.id = students[i].id;
+    strcpy(temp.fname, students[i].fname);
+    strcpy(temp.lname, students[i].lname);
+    strcpy(temp.email, students[i].email);
+    temp.gpa = students[i].gpa;
+    students[i].id = students[indexOfNextSmallest].id;
+    strcpy(students[i].fname, students[indexOfNextSmallest].fname);
+    strcpy(students[i].lname, students[indexOfNextSmallest].lname);
+    strcpy(students[i].email, students[indexOfNextSmallest].email);
+    students[i].gpa = students[indexOfNextSmallest].gpa;
+    students[indexOfNextSmallest].id = temp.id;
+    strcpy(students[indexOfNextSmallest].fname, temp.fname);
+    strcpy(students[indexOfNextSmallest].lname, temp.lname);
+    strcpy(students[indexOfNextSmallest].email, temp.email);
+    students[indexOfNextSmallest].gpa = temp.gpa;
+  }
+}
+
 void GradeBook::menu() {
   while (true) {
     int choice, id;
     cout << "\n********** Class Roster **********"
          << "\nTotal Students = " << numStudents;
     cout << "\n1. Display all students";
-    cout << "\n2. Search a student by ID";
+    cout << "\n2. Sort Students by ID";
     cout << "\n3. Add a new student";
     cout << "\n4. Delete student by ID";
     cout << "\n5. Save student records into file";
@@ -160,20 +187,12 @@ void GradeBook::menu() {
     cin >> choice;
     switch (choice) {
       case 1:
-        cout << "\n\nShowing Records:";
+        cout << "\n\nShowing Records:\n";
         printAll();
         break;
       case 2:
-        cout << "Search for student with ID: ";
-        cin  >> id;
-        id = findID(id);
-        if (id != -1)
-          printId(id);
-        else
-          cout << "Could not find student with that id";
-        cout << "\n\nPress ENTER to continue...";
-        cin.get();
-        cin.get();
+        sortData();
+        cout << "\n\nSorted Students by ID\n";
         break;
       case 3:
         char lname[20], fname[20], email[40];
@@ -215,8 +234,8 @@ void GradeBook::menu() {
 
 int main(int argc, char *argv[]) {
   GradeBook class_roster;
-  if (argc == 2)
-    class_roster.setFiles(argv[0], argv[1]);
+  if (argc == 3)
+    class_roster.setFiles(argv[1], argv[2]);
   class_roster.loadData();
   class_roster.menu();
   return 0;
