@@ -41,9 +41,8 @@ void getInput(int &seed, int &size, int &lower, int &upper) {
 
 void getStats(double &mean, double &std, int size, int lower, int upper) {
   double sum = 0, square_sum = 0;
-  int current;
   cout << "\nNumbers Generated:\n";
-  for (int i; i < size; i++) {
+  for (int i = 0, current; i < size; i++) {
     current = getNum(lower, upper);
     cout << current << " ";
     sum += current;
