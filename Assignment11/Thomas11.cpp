@@ -18,8 +18,8 @@ struct Account {
 class Bank {
   public:
     Bank();
-    void readData(string file);
-    void writeData(string file);
+    void readData(char file[]);
+    void writeData(char file[]);
     void sortByID();
     void sortByLName();
     void printData();
@@ -34,9 +34,9 @@ Bank::Bank() {
   numAccounts = 0;
 }
 
-void Bank::readData(string file) {
+void Bank::readData(char file[]) {
   numAccounts = 0;
-  fin.open(file.c_str());
+  fin.open(file);
   if (fin.fail()) {
     cout << "Input File cannot be opened." << endl;
     cout << "Press ENTER to continue ...";
@@ -56,8 +56,8 @@ void Bank::readData(string file) {
   fin.close();
 }
 
-void Bank::writeData(string file) {
-  fout.open(file.c_str());
+void Bank::writeData(char file[]) {
+  fout.open(file);
   if (fout.fail()) {
     cout << "Input File cannot be opened." << endl;
     cout << "Press ENTER to continue ...";
@@ -113,23 +113,16 @@ void Bank::sortByLName() {
 int main(int argc, char *argv[]) {
   Bank bank;
   if (argc == 4) {
-    bank.readData(string(argv[1]));
+    bank.readData(argv[1]);
     if (string(argv[3]) == string("LastName"))
       bank.sortByLName();
     else if (string(argv[3]) == string("ID"))
       bank.sortByID();
     else
       cout << "Unknown Sorting ORDER, copying the data\n";
-    bank.writeData(string(argv[2]));
+    bank.writeData(argv[2]);
   } else {
-    cout << "Incorrect argument format detected, using defaults =>
-         \nInput: prog11in.txt
-         \nOutput: prog11out.txt
-         \nSortBy: ID
-         \nExpected Usage:
-         \n./program.exe proginput.txt progoutput.txt (LastName or ID)";
-    bank.readData(string("prog11in.txt"));
-    bank.sortByID();
-    bank.writeData(string("prog11out.txt"));
+    cout << "\nExpected Usage:"
+         << "\n./program.exe proginput.txt progoutput.txt (LastName or ID)";
   }
 }
