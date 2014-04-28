@@ -116,14 +116,20 @@ int main(int argc, char *argv[]) {
     bank.readData(string(argv[1]));
     if (string(argv[3]) == string("LastName"))
       bank.sortByLName();
-    else
+    else if (string(argv[3]) == string("ID"))
       bank.sortByID();
-    bank.printData();
+    else
+      cout << "Unknown Sorting ORDER, copying the data\n";
     bank.writeData(string(argv[2]));
   } else {
+    cout << "Incorrect argument format detected, using defaults =>
+         \nInput: prog11in.txt
+         \nOutput: prog11out.txt
+         \nSortBy: ID
+         \nExpected Usage:
+         \n./program.exe proginput.txt progoutput.txt (LastName or ID)";
     bank.readData(string("prog11in.txt"));
     bank.sortByID();
-    bank.printData();
     bank.writeData(string("prog11out.txt"));
   }
 }
